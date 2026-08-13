@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Date 💕</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; overflow-x:hidden;
+    font-family:"Trebuchet MS",system-ui,sans-serif;
+    background:linear-gradient(135deg,#fff4f8,#ffdce9 55%,#ffeaf2);
+    color:#7d3652;
+  }
+  button,input{font:inherit}
+  .hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .heart{position:absolute;bottom:-40px;animation:float 8s linear infinite;opacity:.55;font-size:22px}
+  @keyframes float{to{transform:translateY(-110vh) rotate(20deg);opacity:0}}
+  .app{
+    position:relative;z-index:1; width:min(92%,720px); min-height:100vh;
+    margin:auto; display:flex; align-items:center; justify-content:center; padding:28px 0;
+  }
+  .card{
+    width:100%; background:rgba(255,255,255,.78); backdrop-filter:blur(12px);
+    border:2px solid #ffabc6; border-radius:30px; padding:30px 24px;
+    box-shadow:0 18px 55px rgba(190,75,118,.18); text-align:center;
+  }
+  .cat-window{
+    width:100%; max-width:360px; margin:0 auto 18px;
+    background:#ffe8f0; border-radius:24px; padding:15px;
+  }
+  .cat-window svg{width:100%;display:block}
+  h1{font-size:clamp(30px,7vw,52px);margin:8px 0 10px;line-height:1.05;color:#9c3e63}
+  h2{font-size:clamp(25px,6vw,38px);margin:8px 0 18px;color:#9c3e63}
+  p{font-size:18px;margin:10px 0 22px}
+  .buttons{display:flex;gap:16px;justify-content:center;align-items:center;min-height:70px}
+  button{
+    border:0; border-radius:18px; padding:14px 28px; cursor:pointer;
+    font-weight:800; transition:.25s ease; box-shadow:0 7px 18px rgba(177,61,102,.15);
+  }
+  .yes{background:#ff78a6;color:white;font-size:21px}
+  .no{background:white;color:#a74c6c;border:2px solid #ff9fbe}
+  button:hover{transform:translateY(-2px)}
+  .message{min-height:28px;color:#c24d77;font-weight:700;font-size:17px;margin-top:14px}
+  .hidden{display:none!important}
+  .date-box{
+    display:flex; flex-direction:column; gap:9px; max-width:360px; margin:0 auto 20px; text-align:left
+  }
+  label{font-weight:800}
+  input[type=date]{
+    width:100%; border:2px solid #ffabc6; background:#fff; color:#7d3652;
+    padding:14px; border-radius:15px; outline:none;
+  }
+  .continue{background:#ff78a6;color:#fff;margin-top:6px}
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px;margin:0 auto}
+  .choice{
+    background:#fff8fb;border:2px solid #ffc0d3;padding:18px 12px;min-height:120px;
+    color:#7d3652
+  }
+  .choice .emoji{font-size:35px;display:block;margin-bottom:8px}
+  .choice.selected{border-color:#f05288;background:#ffe1ec;transform:scale(1.02)}
+  .final-title{font-size:clamp(30px,8vw,55px)}
+  .tiny{font-size:14px;color:#a86b82;margin-top:18px}
+  @media(max-width:560px){.choices{grid-template-columns:1fr}.card{padding:22px 15px}}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+
+<div class="app">
+  <main class="card">
+
+    <!-- STEP 1 -->
+    <section id="step1">
+      <div class="cat-window">
+        <svg viewBox="0 0 360 230" aria-label="Two cute cats">
+          <rect width="360" height="230" rx="22" fill="#ffdce9"/>
+          <circle cx="92" cy="53" r="15" fill="#fff"/><circle cx="268" cy="53" r="15" fill="#fff"/>
+          <g transform="translate(55,55)">
+            <path d="M25 35 L18 0 L52 20 L105 20 L138 0 L132 60 Q132 105 78 110 Q25 105 25 60Z" fill="#fff" stroke="#d77a9a" stroke-width="4"/>
+            <circle cx="58" cy="55" r="7" fill="#55313d"/><circle cx="104" cy="55" r="7" fill="#55313d"/>
+            <circle cx="60" cy="53" r="2.5" fill="#fff"/><circle cx="106" cy="53" r="2.5" fill="#fff"/>
+            <path d="M81 67 q-8 8 0 14 q8-6 0-14" fill="#f28ba9"/>
+            <path d="M67 84 q14 13 28 0" fill="none" stroke="#8f4b62" stroke-width="3" stroke-linecap="round"/>
+            <path d="M28 27 Q10 12 24 2 Q43 12 50 25Z" fill="#ff86ae"/>
+            <path d="M22 8 Q31 20 44 21" fill="none" stroke="#d85f8a" stroke-width="3"/>
+          </g>
+          <g transform="translate(192,55)">
+            <path d="M25 35 L18 0 L52 20 L105 20 L138 0 L132 60 Q132 105 78 110 Q25 105 25 60Z" fill="#a99699" stroke="#75666b" stroke-width="4"/>
+            <circle cx="58" cy="55" r="7" fill="#40343a"/><circle cx="104" cy="55" r="7" fill="#40343a"/>
+            <circle cx="60" cy="53" r="2.5" fill="#fff"/><circle cx="106" cy="53" r="2.5" fill="#fff"/>
+            <path d="M81 67 q-8 8 0 14 q8-6 0-14" fill="#ef839f"/>
+            <path d="M67 84 q14 13 28 0" fill="none" stroke="#5e4d54" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="180" y="218" text-anchor="middle" font-size="19" fill="#bd5278">♡ meow meow ♡</text>
+        </svg>
+      </div>
+      <h1>Will you go<br>on a date with me? 💕</h1>
+      <p>Choose wisely, honey... 🥺</p>
+      <div class="buttons">
+        <button class="yes" id="yesBtn" onclick="acceptDate()">Yes 💗</button>
+        <button class="no" id="noBtn" onclick="noClicked()">No</button>
+      </div>
+      <div class="message" id="noMessage"></div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section id="step2" class="hidden">
+      <div class="cat-window">
+        <svg viewBox="0 0 360 250">
+          <rect width="360" height="250" rx="22" fill="#ffcfe0"/>
+          <text x="180" y="34" text-anchor="middle" font-size="24" font-weight="bold" fill="#913a5e">that's my man ♡</text>
+          <g transform="translate(40,70)">
+            <path d="M20 45 L15 5 L48 25 L100 25 L130 5 L128 70 Q128 118 73 120 Q20 115 20 70Z" fill="#fff" stroke="#d77a9a" stroke-width="4"/>
+            <circle cx="53" cy="57" r="7" fill="#55313d"/><circle cx="99" cy="57" r="7" fill="#55313d"/>
+            <path d="M74 69 q-8 8 0 14 q8-6 0-14" fill="#f28ba9"/>
+            <path d="M60 86 q14 13 28 0" fill="none" stroke="#8f4b62" stroke-width="3"/>
+            <path d="M22 34 Q5 17 22 8 Q38 22 48 31Z" fill="#ff86ae"/>
+            <path d="M95 101 Q122 85 142 101" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(185,75)">
+            <path d="M20 45 L15 5 L48 25 L100 25 L130 5 L128 70 Q128 118 73 120 Q20 115 20 70Z" fill="#a99699" stroke="#75666b" stroke-width="4"/>
+            <circle cx="53" cy="57" r="7" fill="#40343a"/><circle cx="99" cy="57" r="7" fill="#40343a"/>
+            <path d="M74 69 q-8 8 0 14 q8-6 0-14" fill="#ef839f"/>
+            <path d="M60 86 q14 13 28 0" fill="none" stroke="#5e4d54" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+      <h2>Yay! I knew you'd say yes! 💋</h2>
+      <div class="date-box">
+        <label for="date">Choose a date for us 💕</label>
+        <input id="date" type="date">
+        <button class="continue" onclick="goChoices()">Continue 💗</button>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section id="step3" class="hidden">
+      <h2>How do you want to go on our date? 💕</h2>
+      <p>Pick your favorite one, dear.</p>
+      <div class="choices">
+        <button class="choice" onclick="selectChoice(this,'Ride around on a bike')"><span class="emoji">🛵</span>Ride around on a bike</button>
+        <button class="choice" onclick="selectChoice(this,'Go to a restaurant')"><span class="emoji">🍽️</span>Go to a restaurant</button>
+        <button class="choice" onclick="selectChoice(this,'Have a room date')"><span class="emoji">🏠</span>Have a room date</button>
+        <button class="choice" onclick="selectChoice(this,'Sit in a quiet place and talk while enjoying the breeze')"><span class="emoji">🌸</span>Sit in a quiet place and talk while enjoying the breeze</button>
+      </div>
+      <button id="finishBtn" class="continue hidden" style="margin-top:20px" onclick="finish()">This one 💕</button>
+    </section>
+
+    <!-- STEP 4 -->
+    <section id="step4" class="hidden">
+      <div class="cat-window">
+        <svg viewBox="0 0 360 250">
+          <rect width="360" height="250" rx="22" fill="#ffd5e3"/>
+          <text x="180" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#9c3e63">our date is officially on 💕</text>
+          <g transform="translate(40,75)">
+            <path d="M20 45 L15 5 L48 25 L100 25 L130 5 L128 70 Q128 118 73 120 Q20 115 20 70Z" fill="#fff" stroke="#d77a9a" stroke-width="4"/>
+            <circle cx="53" cy="57" r="7" fill="#55313d"/><circle cx="99" cy="57" r="7" fill="#55313d"/>
+            <path d="M74 69 q-8 8 0 14 q8-6 0-14" fill="#f28ba9"/>
+            <path d="M58 86 q16 17 32 0" fill="none" stroke="#8f4b62" stroke-width="3"/>
+            <path d="M22 34 Q5 17 22 8 Q38 22 48 31Z" fill="#ff86ae"/>
+          </g>
+          <g transform="translate(190,75)">
+            <path d="M20 45 L15 5 L48 25 L100 25 L130 5 L128 70 Q128 118 73 120 Q20 115 20 70Z" fill="#a99699" stroke="#75666b" stroke-width="4"/>
+            <circle cx="53" cy="57" r="7" fill="#40343a"/><circle cx="99" cy="57" r="7" fill="#40343a"/>
+            <path d="M74 69 q-8 8 0 14 q8-6 0-14" fill="#ef839f"/>
+            <path d="M58 86 q16 17 32 0" fill="none" stroke="#5e4d54" stroke-width="3"/>
+          </g>
+          <text x="180" y="225" text-anchor="middle" font-size="21" fill="#bd5278">♡ forever my favorite person ♡</text>
+        </svg>
+      </div>
+      <h1 class="final-title">Thank you so much,<br>dear husband 💋</h1>
+      <p id="summary"></p>
+      <p class="tiny">Now you have officially agreed. No take-backs. 😌💕</p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+let noCount = 0;
+let chosen = "";
+
+const noTexts = [
+  "are you sure?",
+  "Really honey?",
+  "Please don't do this",
+  "Noooo <3",
+  "Pleaseee 🥺"
+];
+
+function noClicked(){
+  noCount++;
+  const no = document.getElementById("noBtn");
+  const yes = document.getElementById("yesBtn");
+  const msg = document.getElementById("noMessage");
+
+  msg.textContent = noTexts[Math.min(noCount-1, noTexts.length-1)];
+
+  const yesScale = 1 + noCount * 0.20;
+  const noScale = Math.max(0.15, 1 - noCount * 0.18);
+
+  yes.style.transform = `scale(${yesScale})`;
+  no.style.transform = `scale(${noScale})`;
+
+  if(noCount >= 5){
+    no.style.opacity = "0";
+    no.style.pointerEvents = "none";
+    setTimeout(()=>no.classList.add("hidden"),450);
+    msg.textContent = "Okayyy... looks like Yes is the only choice now. 💗";
+  }
+}
+
+function acceptDate(){
+  show("step1",false);
+  show("step2",true);
+}
+
+function goChoices(){
+  const date = document.getElementById("date").value;
+  if(!date){
+    alert("Pick a date first, honey 💕");
+    return;
+  }
+  show("step2",false);
+  show("step3",true);
+}
+
+function selectChoice(el, value){
+  document.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  chosen = value;
+  document.getElementById("finishBtn").classList.remove("hidden");
+}
+
+function finish(){
+  const dateValue = document.getElementById("date").value;
+  const prettyDate = new Date(dateValue + "T00:00:00").toLocaleDateString(undefined,{
+    weekday:"long", year:"numeric", month:"long", day:"numeric"
+  });
+  document.getElementById("summary").innerHTML =
+    `Date: <b>${prettyDate}</b><br>Plan: <b>${chosen}</b> 💕`;
+  show("step3",false);
+  show("step4",true);
+  confetti();
+}
+
+function show(id,on){
+  document.getElementById(id).classList.toggle("hidden",!on);
+}
+
+function confetti(){
+  for(let i=0;i<28;i++){
+    const e=document.createElement("div");
+    e.textContent=["💗","💕","💖","🌸","🐾"][Math.floor(Math.random()*5)];
+    e.style.position="fixed";
+    e.style.left=Math.random()*100+"vw";
+    e.style.top="-30px";
+    e.style.fontSize=(16+Math.random()*18)+"px";
+    e.style.zIndex=20;
+    e.style.transition="transform 2.8s ease, opacity 2.8s ease";
+    document.body.appendChild(e);
+    requestAnimationFrame(()=>{
+      e.style.transform=`translateY(${110+Math.random()*70}vh) rotate(${Math.random()*600-300}deg)`;
+      e.style.opacity="0";
+    });
+    setTimeout(()=>e.remove(),3000);
+  }
+}
+
+for(let i=0;i<18;i++){
+  const h=document.createElement("span");
+  h.className="heart";
+  h.textContent=["♡","♥","💗","🐾"][Math.floor(Math.random()*4)];
+  h.style.left=Math.random()*100+"%";
+  h.style.animationDelay=(Math.random()*8)+"s";
+  h.style.animationDuration=(6+Math.random()*5)+"s";
+  document.getElementById("hearts").appendChild(h);
+}
+</script>
+</body>
+</html>
